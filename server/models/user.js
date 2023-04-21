@@ -3,14 +3,13 @@ const Mongoose = require('mongoose');
 const { ROLES, EMAIL_PROVIDER } = require('../constants');
 
 const { Schema } = Mongoose;
-
 // User Schema
 const UserSchema = new Schema({
   email: {
     type: String,
-    required: () => {
-      return this.provider !== 'email' ? false : true;
-    }
+    // required: () => {
+    //   return this.provider !== 'email' ? false : true;
+    // }
   },
   phoneNumber: {
     type: String

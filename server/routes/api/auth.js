@@ -19,7 +19,6 @@ const { secret, tokenLife } = keys.jwt;
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-
     if (!email) {
       return res
         .status(400)
@@ -55,7 +54,6 @@ router.post('/login', async (req, res) => {
     const payload = {
       id: user.id
     };
-
     const token = jwt.sign(payload, secret, { expiresIn: tokenLife });
 
     if (!token) {
@@ -154,6 +152,7 @@ router.post('/register', async (req, res) => {
       }
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       error: 'Your request could not be processed. Please try again.'
     });

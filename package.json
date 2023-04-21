@@ -21,8 +21,9 @@
       "lcov"
     ],
     "collectCoverageFrom": [
-      "server/routes/api/brand.js"
-    ]
+      "server/routes/api/auth.{js,jsx}"
+    ],
+    "preset": "@shelf/jest-mongodb"
   },
   "repository": {
     "type": "git",
@@ -102,6 +103,7 @@
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.21.0",
+    "@shelf/jest-mongodb": "^4.1.7",
     "autoprefixer": "^9.6.0",
     "babel-loader": "^8.0.6",
     "chalk": "^2.4.2",
