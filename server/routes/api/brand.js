@@ -89,7 +89,7 @@ router.get(
 router.get('/:id', async (req, res) => {
   try {
     const brandId = req.params.id;
-    console.log(brandId);
+    // console.log(brandId);
     const brandDoc = await Brand.findOne({ _id: brandId }).populate(
       'merchant',
       '_id'
