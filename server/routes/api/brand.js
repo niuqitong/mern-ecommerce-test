@@ -48,7 +48,6 @@ router.get('/list', async (req, res) => {
     const brands = await Brand.find({
       isActive: true
     }).populate('merchant', 'name');
-
     res.status(200).json({
       brands
     });
@@ -90,7 +89,7 @@ router.get(
 router.get('/:id', async (req, res) => {
   try {
     const brandId = req.params.id;
-
+    console.log(brandId);
     const brandDoc = await Brand.findOne({ _id: brandId }).populate(
       'merchant',
       '_id'
@@ -156,7 +155,8 @@ router.put(
       const foundBrand = await Brand.findOne({
         $or: [{ slug }]
       });
-
+      // console.log("found brand")
+      // console.log(foundBrand)
       if (foundBrand && foundBrand._id != brandId) {
         return res.status(400).json({ error: 'Slug is already in use.' });
       }

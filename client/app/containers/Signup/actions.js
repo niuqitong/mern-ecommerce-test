@@ -49,6 +49,7 @@ export const signUp = () => {
 
       const newUser = getState().signup.signupFormData;
       const isSubscribed = getState().signup.isSubscribed;
+      console.log("sending post req to server");
 
       const { isValid, errors } = allFieldsValidation(newUser, rules, {
         'required.email': 'Email is required.',
@@ -68,7 +69,6 @@ export const signUp = () => {
         isSubscribed,
         ...newUser
       };
-
       const response = await axios.post('/api/auth/register', user);
 
       const successfulOptions = {

@@ -137,7 +137,7 @@ export const addBrand = () => {
       if (!isValid) {
         return dispatch({ type: SET_BRAND_FORM_ERRORS, payload: errors });
       }
-
+      console.log(brand);
       const response = await axios.post(`/api/brand/add`, brand);
 
       const successfulOptions = {
