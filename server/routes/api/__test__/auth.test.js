@@ -57,7 +57,7 @@ describe('Test /api/auth/', () => {
         await User.deleteMany({});
     })
 
-    describe('/login', () => {
+    describe('POST /login', () => {
 
         // black box testing
         it("should return 200 OK and the mock user's data with the correct request", async () => {
@@ -285,7 +285,7 @@ describe('Test /api/auth/', () => {
         */
     });
 
-    describe('/register', () => {
+    describe('POST /register', () => {
 
         beforeAll(() => {
             mailchimp.subscribeToNewsletter.mockReturnValue(Promise.resolve({ status: 'subscribed' }));
@@ -586,7 +586,7 @@ describe('Test /api/auth/', () => {
 
     });
 
-    describe('/forgot', () => {
+    describe('POST /forgot', () => {
         // only one input email
         it("should return 200 OK with a valid email", async () => {
 
@@ -671,7 +671,7 @@ describe('Test /api/auth/', () => {
 
     });
 
-    describe('/reset/:token', () => {
+    describe('POST /reset/:token', () => {
         let resetPasswordToken = "123";
 
         // only after forgot can be reseted
@@ -798,7 +798,7 @@ describe('Test /api/auth/', () => {
         // already branch covered
     });
 
-    describe('/reset (auth)', () => {
+    describe('POST /reset (auth)', () => {
 
         let token;
 
