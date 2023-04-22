@@ -16,6 +16,16 @@ const mailchimp = require('../../../services/mailchimp');
 jest.mock('../../../services/mailgun');
 const mailgun = require('../../../services/mailgun');
 
+/**
+ * Bug detected:
+ * 1. schema
+ * 2. no validation
+ * 3. no await
+ * 
+ * a few functions are not covered because currently we don't want to test them. (e.g. google login/facebook login)
+ * Some branches are not reachable (mentioned in related tests).
+ */
+
 describe('Test /api/auth/', () => {
     let mockUser = {
         email: "test@test.com",
