@@ -107,7 +107,6 @@ router.post('/register', async (req, res) => {
     let subscribed = false;
     if (isSubscribed) {
       const result = await mailchimp.subscribeToNewsletter(email);
-
       if (result.status === 'subscribed') {
         subscribed = true;
       }
@@ -152,7 +151,6 @@ router.post('/register', async (req, res) => {
       }
     });
   } catch (error) {
-    console.log(error);
     res.status(400).json({
       error: 'Your request could not be processed. Please try again.'
     });
@@ -183,6 +181,7 @@ router.post('/forgot', async (req, res) => {
     existingUser.resetPasswordToken = resetToken;
     existingUser.resetPasswordExpires = Date.now() + 3600000;
 
+    // bug no await
     existingUser.save();
 
     await mailgun.sendEmail(
@@ -230,6 +229,7 @@ router.post('/reset/:token', async (req, res) => {
     resetUser.resetPasswordToken = undefined;
     resetUser.resetPasswordExpires = undefined;
 
+    // bug no await here
     resetUser.save();
 
     await mailgun.sendEmail(resetUser.email, 'reset-confirmation');
@@ -277,6 +277,7 @@ router.post('/reset', auth, async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(confirmPassword, salt);
     existingUser.password = hash;
+    // bug no await here
     existingUser.save();
 
     await mailgun.sendEmail(existingUser.email, 'reset-confirmation');
