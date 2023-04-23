@@ -10,17 +10,9 @@ beforeAll(async () => {
   const response = await request(app)
     .post("/api/auth/login")
     .send({ email: "user@example.com", password: "password" });
+
   authToken = response.body.token;
   userId = response.body.user.id;
-});
-
-describe("Sample test for a logging in", () => {
-  test("should login", async () => {
-    const response = await request(app)
-      .post("/api/auth/login")
-      .send({ email: "user@example.com", password: "password" });
-    const token = response.body.token;
-  });
 });
 
 describe("POST /api/address/add", () => {

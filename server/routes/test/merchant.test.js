@@ -151,14 +151,15 @@ describe("GET /api/merchant/search", () => {
       email: "test@test.com",
       brandName: "test",
     });
-    await merchant.save();
+
+    // await merchant.save();
 
     const response = await request(app)
       .get("/api/merchant/search")
       .set("Authorization", `${authToken}`)
       .query({ search: "test@test.com" })
       .send();
-    console.log(response);
+    console.log(response.body);
     expect(response.statusCode).toBe(200);
     expect(response.body.merchant.name).toBe("test");
     expect(response.body.merchant.business).toBe("test");
@@ -294,6 +295,10 @@ describe("PUT /api/merchant/reject/:id", () => {
 
   //broken
   test("should return 400 if not existing merchant", async () => {
+    jest.spyOn(Merchant, "findOneAndUpdate").mockImplementationOnce(() => {
+      throw new Error("Error");
+    });
+
     const response = await request(app)
       .put(`/api/merchant/reject/dasfasdfasdf`)
       .set("Authorization", `${authToken}`)

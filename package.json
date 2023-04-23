@@ -21,7 +21,11 @@
       "lcov"
     ],
     "collectCoverageFrom": [
-      "server/routes/api/address.js"
+      "server/routes/api/address.js",
+      "server/routes/api/cart.js",
+      "server/routes/api/merchant.js",
+      "server/routes/api/product.js",
+      "server/routes/api/wishlist.js"
     ]
   },
   "repository": {

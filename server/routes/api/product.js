@@ -61,6 +61,8 @@ router.get('/list/search/:name', async (req, res) => {
       { name: 1, slug: 1, imageUrl: 1, price: 1, _id: 0 }
     );
 
+
+    // bug
     if (productDoc.length < 0) {
       return res.status(404).json({
         message: 'No product found.'

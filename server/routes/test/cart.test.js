@@ -95,6 +95,7 @@ describe("POST /api/cart/add", () => {
     expect(response.status).toBe(401);
   });
 
+  //broken
   test("simulated error", () => {
     // jest.spyOn(Cart.prototype, 'save').mockImplementationOnce(() => {
     //   throw new Error('Error');
