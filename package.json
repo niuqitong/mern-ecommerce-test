@@ -16,12 +16,12 @@
   },
   "jest": {
     "collectCoverage": true,
+    "maxWorkers": 1,
     "coverageReporters": [
       "text",
       "lcov"
     ],
     "collectCoverageFrom": [
-      
       "server/routes/api/user.js",
       "server/routes/api/order.js",
       "server/routes/api/brand.js",
@@ -113,6 +113,7 @@
     "cross-env": "^5.2.1",
     "css-loader": "^2.1.1",
     "cssnano": "^4.1.10",
+    "cypress": "^12.10.0",
     "dotenv-webpack": "^1.8.0",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
