@@ -9,7 +9,7 @@ const { ObjectId } = require("mongoose");
 const mongoose = require('mongoose');
 
 
-describe("brand APIs test", () => {
+describe("contact APIs test", () => {
   let token;
   let original;
   let brands_db;
