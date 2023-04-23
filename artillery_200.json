@@ -1,0 +1,22 @@
+{
+  "config": {
+    "target": "http://localhost:8080",
+    "phases": [
+      {
+        "duration": 10,
+        "arrivalRate": 200
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "flow": [
+        {
+          "get": {
+            "url": "/api/brand/list"
+          }
+        }
+      ]
+    }
+  ]
+}

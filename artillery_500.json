@@ -4,7 +4,7 @@
     "phases": [
       {
         "duration": 10,
-        "arrivalRate": 2000
+        "arrivalRate": 500
       }
     ]
   },
@@ -13,7 +13,7 @@
       "flow": [
         {
           "get": {
-            "url": "/api/brand/local"
+            "url": "/api/brand/list"
           }
         }
       ]
