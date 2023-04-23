@@ -52,7 +52,7 @@ router.post('/add', async (req, res) => {
     });
     const merchantDoc = await merchant.save();
 
-    await mailgun.sendEmail(email, 'merchant-application');
+    // await mailgun.sendEmail(email, 'merchant-application');
 
     res.status(200).json({
       success: true,
