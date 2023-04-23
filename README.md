@@ -1,5 +1,16 @@
 # MERN Ecommerce
 
+## Test
+### cypress for frontend testing
+```bash
+npx cypress open
+```
+
+### artillery for load testing
+```bash
+artillery run artillery.json
+```
+
 ## Description
 
 An ecommerce store built with MERN stack, and utilizes third party API's. This ecommerce store enable three main different flows or implementations:
