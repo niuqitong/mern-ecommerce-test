@@ -25,7 +25,7 @@ describe('Test /api/category', () => {
         // create a user
         user = new User({
             name: 'Test User',
-            email: 'test@test.com',
+            email: 'testCat@test.com',
             password: 'test123',
             firstName: 'Test',
             lastName: 'User',
@@ -72,10 +72,9 @@ describe('Test /api/category', () => {
 
     // delete all after all tests
     afterAll(async () => {
-        await User.deleteMany({});
+        await User.findByIdAndDelete(user.id);
         await Category.deleteMany({});
         await Product.deleteMany({});
-        mongoose.connection.close();
     });
 
     describe('POST /add', () => {

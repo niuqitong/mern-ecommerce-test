@@ -28,7 +28,7 @@ const mailgun = require('../../../services/mailgun');
 
 describe('Test /api/auth/', () => {
     let mockUser = {
-        email: "test@test.com",
+        email: "testAuth@test.com",
         password: "test123",
         firstName: "Test",
         lastName: "User",
@@ -54,8 +54,8 @@ describe('Test /api/auth/', () => {
 
     // clear database after test
     afterEach(async () => {
-        await User.deleteMany({});
-    })
+        await User.findByIdAndDelete(mockUser.id);
+    });
 
     describe('POST /login', () => {
 
@@ -467,7 +467,7 @@ describe('Test /api/auth/', () => {
         it("should return 400 Bad Request with an invalid email(wrong class (array, function, etc))", async () => {
             // email is an array
             const registerRequest = {
-                email: ["123@123.com", mockUser.email],
+                email: ["123reg1@123.com", mockUser.email],
                 password: "test123",
                 firstName: "Test",
                 lastName: "User",
@@ -483,7 +483,7 @@ describe('Test /api/auth/', () => {
             expect(response.body).toMatchObject(expectedRes);
 
             // email is a function
-            registerRequest.email = () => { return "123@123.com" };
+            registerRequest.email = () => { return "123reg2@123.com" };
 
             const response2 = await request(app).post('/api/auth/register').send(registerRequest);
             expect(response2.statusCode).toBe(400);
@@ -491,7 +491,7 @@ describe('Test /api/auth/', () => {
 
             // email is an object
             registerRequest.email = {
-                email: { email: "123@123.com" }
+                email: { email: "123reg3@123.com" }
             }
 
             const response3 = await request(app).post('/api/auth/register').send(registerRequest);

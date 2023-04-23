@@ -12,7 +12,7 @@
     "start": "cross-env NODE_ENV=production node server/index.js",
     "postinstall": "npm run build",
     "seed:db": "node server/utils/seed.js",
-    "test": "jest --coverage --detectOpenHandles"
+    "test": "jest --coverage"
   },
   "jest": {
     "collectCoverage": true,
@@ -21,7 +21,7 @@
       "lcov"
     ],
     "collectCoverageFrom": [
-      "server/routes/api/category.{js,jsx}"
+      "server/routes/api/*.{js,jsx}"
     ],
     "preset": "@shelf/jest-mongodb"
   },
