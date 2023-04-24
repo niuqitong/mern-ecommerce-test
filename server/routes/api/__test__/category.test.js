@@ -72,7 +72,8 @@ describe('Test /api/category', () => {
 
     // delete all after all tests
     afterAll(async () => {
-        await User.findByIdAndDelete(user.id);
+        // await User.findByIdAndDelete(user.id);
+        await User.deleteMany({});
         await Category.deleteMany({});
         await Product.deleteMany({});
     });

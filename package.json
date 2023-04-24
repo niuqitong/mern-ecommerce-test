@@ -21,7 +21,8 @@
       "lcov"
     ],
     "collectCoverageFrom": [
-      "server/**/*.{js,jsx}"
+      "server/routes/api/*.{js,jsx}",
+      "server/utils/*.{js,jsx}"
     ],
     "preset": "@shelf/jest-mongodb",
     "maxWorkers": 1,
