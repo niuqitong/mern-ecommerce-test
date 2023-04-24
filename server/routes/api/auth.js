@@ -19,7 +19,6 @@ const { secret, tokenLife } = keys.jwt;
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-
     if (!email) {
       return res
         .status(400)
@@ -55,7 +54,6 @@ router.post('/login', async (req, res) => {
     const payload = {
       id: user.id
     };
-
     const token = jwt.sign(payload, secret, { expiresIn: tokenLife });
 
     if (!token) {
@@ -109,7 +107,6 @@ router.post('/register', async (req, res) => {
     let subscribed = false;
     if (isSubscribed) {
       const result = await mailchimp.subscribeToNewsletter(email);
-
       if (result.status === 'subscribed') {
         subscribed = true;
       }
@@ -184,6 +181,7 @@ router.post('/forgot', async (req, res) => {
     existingUser.resetPasswordToken = resetToken;
     existingUser.resetPasswordExpires = Date.now() + 3600000;
 
+    // bug no await
     existingUser.save();
 
     await mailgun.sendEmail(
@@ -231,6 +229,7 @@ router.post('/reset/:token', async (req, res) => {
     resetUser.resetPasswordToken = undefined;
     resetUser.resetPasswordExpires = undefined;
 
+    // bug no await here
     resetUser.save();
 
     await mailgun.sendEmail(resetUser.email, 'reset-confirmation');
@@ -278,6 +277,7 @@ router.post('/reset', auth, async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(confirmPassword, salt);
     existingUser.password = hash;
+    // bug no await here
     existingUser.save();
 
     await mailgun.sendEmail(existingUser.email, 'reset-confirmation');
