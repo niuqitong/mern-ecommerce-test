@@ -9,7 +9,7 @@ const { ObjectId } = require("mongoose");
 const mongoose = require('mongoose');
 
 
-describe("contact APIs test", () => {
+describe("brand APIs test", () => {
   let token;
   let original;
   let brands_db;
@@ -25,7 +25,7 @@ describe("contact APIs test", () => {
 
     expect(response.status).toBe(200);
   });
-  // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDE3ZjAyNDIxN2Y2NTY1NDA5ODBiMiIsImlhdCI6MTY4MjA4NDkwMiwiZXhwIjoxNjgyNjg5NzAyfQ.lMx3gqhSw4qx-EClPZBsu_nySmYGWwTxlvFRsPrPgJ0
+    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDE3ZjAyNDIxN2Y2NTY1NDA5ODBiMiIsImlhdCI6MTY4MjA4NDkwMiwiZXhwIjoxNjgyNjg5NzAyfQ.lMx3gqhSw4qx-EClPZBsu_nySmYGWwTxlvFRsPrPgJ0
   afterAll(async () => {
     try {
       await Contact.deleteMany({});
@@ -74,10 +74,10 @@ describe("contact APIs test", () => {
         message: 'This is a test message.',
       });
 
-    expect(response.status).toBe(400);
-    expect(response.body.error).toBe(
-      "You must enter description & name."
-    );
+      expect(response.status).toBe(400);
+      expect(response.body.error).toBe(
+        "You must enter description & name."
+      );
   });
   test("test POST on /api/contact/add", async () => {
 
@@ -126,5 +126,5 @@ describe("contact APIs test", () => {
       "Your request could not be processed. Please try again."
     );
   });
-
+  
 });

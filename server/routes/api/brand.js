@@ -58,6 +58,24 @@ router.get('/list', async (req, res) => {
   }
 });
 
+router.get('/local', async (req, res) => {
+  try {
+    const brand = new Brand({
+      name: "adsf",
+      description: "asdf ads fa dfa",
+      slug: "nqt",
+      isActive: true
+    })
+    res.status(200).json({
+      brand
+    });
+  } catch (error) {
+    res.status(400).json({
+      error: 'Your request could not be processed. Please try again.'
+    });
+  }
+});
+
 // fetch brands api
 router.get(
   '/',
@@ -66,7 +84,7 @@ router.get(
   async (req, res) => {
     try {
       let brands = null;
-
+      // console.log(req.user)
       if (req.user.merchant) {
         brands = await Brand.find({
           merchant: req.user.merchant
@@ -237,6 +255,7 @@ const deactivateMerchant = async brandId => {
     'merchant',
     '_id'
   );
+  // console.log(brandDoc)
   if (!brandDoc || !brandDoc.merchant) return;
   const merchantId = brandDoc.merchant._id;
   const query = { _id: merchantId };
@@ -251,3 +270,5 @@ const deactivateMerchant = async brandId => {
 };
 
 module.exports = router;
+// partition, each choice of auto info
+// property based 
