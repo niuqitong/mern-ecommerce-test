@@ -4,18 +4,40 @@ const Product = require("../../models/product");
 const Brand = require("../../models/brand");
 const Merchant = require("../../models/merchant");
 const WishList = require("../../models/wishlist");
-let authToken;
+const User = require("../../models/user");
+const { ROLES } = require("../../constants");
+const bcrypt = require("bcryptjs");
+
+let adminToken;
 let userId;
 let product1;
 let product2;
+let admin;
+let user;
 
 beforeAll(async () => {
+  admin = new User({
+    email: "admin@kaicko.com",
+    password: "password",
+    firstName: "Admin",
+    lastName: "Admin",
+    provider: "Email",
+    role: ROLES.Admin,
+  });
+  const existingUser = await User.findOne({ email: admin.email });
+  if (existingUser) throw new Error("User already exists");
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(admin.password, salt);
+  admin.password = hash;
+  await admin.save({ validateBeforeSave: false });
+
   const response = await request(app)
     .post("/api/auth/login")
-    .send({ email: "user@example.com", password: "password" });
-  authToken = response.body.token;
-  userId = response.body.user.id;
+    .send({ email: "admin@kaicko.com", password: "password" });
 
+  adminToken = response.body.token;
+  userId = response.body.user.id;
+  user = response.body.user;
   const brand = new Brand({
     name: "Sample Brand",
     slug: "sample-brand",
@@ -60,6 +82,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
+  await User.deleteMany({});
   await Product.deleteMany({});
   await Brand.deleteMany({});
   await WishList.deleteMany({});
@@ -70,7 +93,7 @@ describe("POST /api/wishlist/", () => {
   test("It should add a product to the wishlist", async () => {
     const response = await request(app)
       .post("/api/wishlist/")
-      .set("Authorization", `${authToken}`)
+      .set("Authorization", `${adminToken}`)
       .send({ product: product1._id, isLiked: true });
 
     expect(response.statusCode).toBe(200);
@@ -82,27 +105,23 @@ describe("POST /api/wishlist/", () => {
 
     const response2 = await request(app)
       .post("/api/wishlist/")
-      .set("Authorization", `${authToken}`)
+      .set("Authorization", `${adminToken}`)
       .send({ product: product2._id, isLiked: true });
-    
-      expect(response2.statusCode).toBe(200);
-      expect(response2.body.success).toBe(true);
-      expect(response2.body.message).toBe("Added to your Wishlist successfully!");
-      expect(response2.body.wishlist.isLiked).toBe(true);
-      expect(response2.body.wishlist.user).toBe(userId);
 
+    expect(response2.statusCode).toBe(200);
+    expect(response2.body.success).toBe(true);
+    expect(response2.body.message).toBe("Added to your Wishlist successfully!");
+    expect(response2.body.wishlist.isLiked).toBe(true);
+    expect(response2.body.wishlist.user).toBe(userId);
   });
 
-
-
   test("Simulated error: It should return an error message", async () => {
-
     jest.spyOn(WishList, "findOneAndUpdate").mockImplementationOnce(() => {
       throw new Error("Simulated error");
     });
     const response = await request(app)
       .post("/api/wishlist/")
-      .set("Authorization", `${authToken}`)
+      .set("Authorization", `${adminToken}`)
       .send({ product: "sample-product1", isLiked: true });
 
     expect(response.statusCode).toBe(400);
@@ -115,9 +134,9 @@ describe("POST /api/wishlist/", () => {
 describe("GET /api/wishlist/", () => {
   test("It should fetch the wishlist", async () => {
     const response = await request(app)
-    .post("/api/wishlist/")
-    .set("Authorization", `${authToken}`)
-    .send({ product: product1._id, isLiked: true });
+      .post("/api/wishlist/")
+      .set("Authorization", `${adminToken}`)
+      .send({ product: product1._id, isLiked: true });
 
     expect(response.statusCode).toBe(200);
     expect(response.body.success).toBe(true);
@@ -127,8 +146,8 @@ describe("GET /api/wishlist/", () => {
 
     const response2 = await request(app)
       .get("/api/wishlist/")
-      .set("Authorization", `${authToken}`);
-      
+      .set("Authorization", `${adminToken}`);
+
     expect(response2.statusCode).toBe(200);
     expect(response2.body.wishlist.length).toBe(2);
   });
@@ -139,7 +158,7 @@ describe("GET /api/wishlist/", () => {
     });
     const response = await request(app)
       .get("/api/wishlist/")
-      .set("Authorization", `${authToken}`);
+      .set("Authorization", `${adminToken}`);
 
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(
@@ -147,6 +166,3 @@ describe("GET /api/wishlist/", () => {
     );
   });
 });
-
-
-
