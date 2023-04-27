@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const app = require('../../../app');
 
+jest.useFakeTimers()
 jest.mock('../../../services/mailchimp');
 const mailchimp = require('../../../services/mailchimp');
 jest.mock('../../../services/mailgun');

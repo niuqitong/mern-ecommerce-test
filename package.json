@@ -26,7 +26,6 @@
       "server/utils/*.{js,jsx}"
     ],
     "preset": "@shelf/jest-mongodb",
-    "maxWorkers": 1,
     "reporters": [
       "default",
       [

@@ -7,7 +7,8 @@ module.exports = {
   },
   port: process.env.PORT || 3000,
   database: {
-    url: process.env.MONGO_URI
+    url: process.env.MONGO_URI // for UI and load testing
+    // url: global.__MONGO_URI__ // for unit tcesting
   },
   jwt: {
     secret: process.env.JWT_SECRET,
