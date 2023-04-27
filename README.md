@@ -47,7 +47,7 @@ npm test
 
 ## Testing Documentation
 
-# UI Testing
+### UI Testing
 - Add to cart
 - sign up and sign in
 - purchasing
@@ -55,14 +55,14 @@ npm test
 - creating product
 - creating category
 
-# API Testing
+### API Testing
 - All APIs covered
 - Bugs:
 
 - Coverage found in coverage/ folder after running tests
 
 
-# Load Testing
+### Load Testing
 `
 
 
