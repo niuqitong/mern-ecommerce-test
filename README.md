@@ -7,7 +7,7 @@ npm install
 ```
 
 
-## Test
+## Test Set Up
 ### cypress for frontend testing
 Set server/config/keys.js to the correct MONGO variable
 In the .env change MONGO_URI to 
@@ -45,7 +45,7 @@ npm test
 
 
 
-### Testing
+## Testing Documentation
 
 # UI Testing
 - Add to cart
