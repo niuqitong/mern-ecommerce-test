@@ -1,7 +1,21 @@
 # MERN Ecommerce
 
+## Installation
+Run the following to install everything. (You may need to switch to node version 14 in order to get the app running.)
+```bash
+npm install
+```
+
+
 ## Test
 ### cypress for frontend testing
+
+Run the app first with the following command:
+```bash
+npm run dev
+```
+
+Then run cypress using the following:
 ```bash
 npx cypress open
 ```
@@ -11,6 +25,21 @@ npx cypress open
 artillery run artillery.json
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Readme from forked repo
 ## Description
 
 An ecommerce store built with MERN stack, and utilizes third party API's. This ecommerce store enable three main different flows or implementations:
