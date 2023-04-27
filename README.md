@@ -9,6 +9,11 @@ npm install
 
 ## Test
 ### cypress for frontend testing
+Set server/config/keys.js to the correct MONGO variable
+In the .env change MONGO_URI to 
+```
+mongodb+srv://oose2022:oosefall2022@cluster0.mohmp8x.mongodb.net/23testing?retryWrites=true&w=majority
+```
 
 Run the app first with the following command:
 ```bash
@@ -21,10 +26,44 @@ npx cypress open
 ```
 
 ### artillery for load testing
+Make sure that in server/config/keys.js you have the correct MONGO DB variable commented
+In the .env change MONGO_URI to 
+```
+mongodb+srv://oose2022:oosefall2022@cluster0.mohmp8x.mongodb.net/load_testing?retryWrites=true&w=majority
+```
 ```bash
 artillery run artillery.json
 ```
 
+
+### API Testing
+Make sure that in server/config/keys.js you have the correct MONGO DB variable commented
+Run
+```
+npm test
+```
+
+
+
+### Testing
+
+# UI Testing
+- Add to cart
+- sign up and sign in
+- purchasing
+- creating brand
+- creating product
+- creating category
+
+# API Testing
+- All APIs covered
+- Bugs:
+
+- Coverage found in coverage/ folder after running tests
+
+
+# Load Testing
+`
 
 
 
