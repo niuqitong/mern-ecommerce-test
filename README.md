@@ -1,6 +1,8 @@
 # MERN Ecommerce
 
 ## Installation
+Remove package-lock.json
+
 Run the following to install everything. (You may need to switch to node version 14 in order to get the app running.)
 ```bash
 npm install

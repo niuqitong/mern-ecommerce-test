@@ -2,19 +2,19 @@ const request = require('supertest');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const app = require('../../../app');
-const User = require('../../../models/user');
-const keys = require('../../../config/keys');
+const app = require('../../app');
+const User = require('../../models/user');
+const keys = require('../../config/keys');
 
-const { ROLES, EMAIL_PROVIDER } = require('../../../constants');
+const { ROLES, EMAIL_PROVIDER } = require('../../constants');
 const mongoose = require('mongoose');
 const { secret, tokenLife } = keys.jwt;
 
-jest.mock('../../../services/mailchimp');
-const mailchimp = require('../../../services/mailchimp');
+jest.mock('../../services/mailchimp');
+const mailchimp = require('../../services/mailchimp');
 
-jest.mock('../../../services/mailgun');
-const mailgun = require('../../../services/mailgun');
+jest.mock('../../services/mailgun');
+const mailgun = require('../../services/mailgun');
 
 /**
  * Bug detected:

@@ -1,12 +1,12 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
 
-const app = require('../../../app');
-
-jest.mock('../../../services/mailchimp');
-const mailchimp = require('../../../services/mailchimp');
-jest.mock('../../../services/mailgun');
-const mailgun = require('../../../services/mailgun');
+const app = require('../../app');
+jest.mock('../../services/mailchimp');
+jest.useFakeTimers() 
+const mailchimp = require('../../services/mailchimp');
+jest.mock('../../services/mailgun');
+const mailgun = require('../../services/mailgun');
 
 describe('Test /api/newsletter', () => {
 

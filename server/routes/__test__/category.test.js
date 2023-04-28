@@ -2,15 +2,15 @@ const request = require('supertest');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const app = require('../../../app');
-const User = require('../../../models/user');
-const Category = require('../../../models/category');
-const Product = require('../../../models/product');
+const app = require('../../app');
+const User = require('../../models/user');
+const Category = require('../../models/category');
+const Product = require('../../models/product');
 
-const keys = require('../../../config/keys');
+const keys = require('../../config/keys');
 const { secret, tokenLife } = keys.jwt;
 
-const { ROLES } = require('../../../constants');
+const { ROLES } = require('../../constants');
 const mongoose = require('mongoose');
 
 describe('Test /api/category', () => {
