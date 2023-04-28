@@ -53,7 +53,7 @@ describe('Test /api/review', () => {
     afterAll(async () => {
         await User.findByIdAndDelete(mockUser._id);
         await Product.findByIdAndDelete(mockProduct._id);
-        await mongoose.disconnect();
+        // await mongoose.disconnect();
     });
 
     describe('POST /add', () => {

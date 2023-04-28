@@ -24,6 +24,7 @@ describe('Add Cart', () => {
         cy.get('.dropdown-action').click();
         cy.get('#CancelOrderItemPopover > .btn-text').click();
         /* ==== End Cypress Studio ==== */
+
     });
 
 });

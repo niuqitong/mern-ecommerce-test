@@ -164,7 +164,6 @@ describe('Test store', () => {
 
         it('should calculate items sales tax', async () => {
             const ret = store.caculateItemsSalesTax(items);
-            console.log(ret);
             expect(ret.reduce((acc, cur) => acc + cur.totalTax, 0)).toBe(100 * 10 * (taxConfig.stateTaxRate / 100) * 100 * 15);
 
             expect(ret.reduce((acc, cur) => acc + cur.totalPrice, 0)).toBe(100 * 10 * 15 + 100 * 10 * 5);

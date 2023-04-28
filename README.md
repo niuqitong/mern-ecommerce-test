@@ -49,17 +49,25 @@ npm test
 
 ### UI Testing
 - Add to cart
-- sign up and sign in
-- purchasing
+- sign in and sign out
+- purchasing and cancel order
 - creating brand
 - creating product
 - creating category
 
 ### API Testing
 - All APIs covered
-- Bugs:
+- Main Faults:
+  - No Validators in Backend (Almost every api)
+    e.g. if login request’s email is an array, it just processes it (find one that match one of the emails).
+  - No Authorization Checking in some APIs
 
-- Coverage found in coverage/ folder after running tests
+- Other faults…
+  - Responses aren’t returned in API causing faults when there are other responses after
+  - One place where <= should have been used instead of < 0
+
+
+- Coverage report can be found in /coverage/ folder after running tests
 
 
 ### Load Testing
