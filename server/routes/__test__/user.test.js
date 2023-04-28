@@ -43,8 +43,8 @@ describe("Search Endpoint Tests", () => {
     }
 
     const loginResponse = await request(app).post("/api/auth/login").send({
-      email: "admin@gmeal.com", // Replace with valid email
-      password: "password", // Replace with valid password
+      email: "admin@gmeal.com", 
+      password: "password", 
     });
     admin_token = loginResponse.body.token;
     const testUsers = [

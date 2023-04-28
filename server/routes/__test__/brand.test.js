@@ -64,7 +64,6 @@ describe("brand APIs test", () => {
         status: "Approved",
         isActive: true
       });
-      // const dbUser = new User(mockMerchant);
       const salt3 = await bcrypt.genSalt(10);
       const hash3 = await bcrypt.hash(mockMerchant.password, salt3);
       mockMerchant.password = hash3;
@@ -115,16 +114,6 @@ describe("brand APIs test", () => {
       })
       mock_product.brand = brand._id;
       
-      // {
-      //   brand: new mongoose.Types.ObjectId(`${brands_db[0]._id}`),
-      //   description: "a big memory",
-      //   isActive: true,
-      //   name: "memory bar",
-      //   price: 1,
-      //   quantity: 1,
-      //   sku: "002",
-      //   texable: 1
-      // }
       await mock_product.save();
 
     } catch (error) {
@@ -237,20 +226,6 @@ describe("brand APIs test", () => {
     );
   });
 
-  // test("Simulate error at api/brand/:id", async () => {
-  //   // jest.spyOn(Brand, 'findOne').mockImplementationOnce(() => {
-  //   //   throw new Error('Simulated error');
-  //   // });
-
-  //   const response = await request(app)
-  //     .get("/api/brand/sdf")
-  //     .set("Authorization", `${adminToken}`);
-
-  //   expect(response.status).toBe(400);
-  //   expect(response.body.error).toBe(
-  //     "Your request could not be processed. Please try again."
-  //   );
-  // });
 
   test("test GET on /api/brand/list/select, admin", async () => {
     const response = await request(app)
@@ -304,7 +279,6 @@ describe("brand APIs test", () => {
 
     expect(response1.status).toBe(200);
     expect(response1.body.success).toBe(true);
-    // expect(response.body.brand.name).toBe('google');
     
     // non-existent
     const brandData2 = {
@@ -372,13 +346,6 @@ describe("brand APIs test", () => {
 
     expect(response2.status).toBe(200);
     expect(response2.body.success).toBe(true);
-
-    // const response3 = await request(app).get(
-    //   "/api/brand/643ed057d6da8e1305b3c9c8"
-    // );
-
-    // expect(response3.status).toBe(200);
-    // expect(response3.body.brand.isActive).toBe(true);
 
     jest.spyOn(Brand, "findOneAndUpdate").mockImplementationOnce(() => {
       throw new Error("Simulated error");
@@ -458,17 +425,11 @@ describe("brand APIs test", () => {
     jest.spyOn(Brand, "deleteOne").mockImplementationOnce(() => {
       throw new Error("Simulated error");
     });
-    // console.log(brands_db)
 
-    // test deactivateMerchant
-    // setup: sign up an account; log in as admin and set the 
-    // account as merchant.
-    // the :id to the following delete is the brand of the newly added merchant
     const response1 = await request(app)
-      .delete(`/api/brand/delete/${brand._id}`) // asus
+      .delete(`/api/brand/delete/${brand._id}`) 
 
       .set("Authorization", `${adminToken}`);
-// 6443280c9bf11b8a47850864
     expect(response1.status).toBe(400);
     
     const response2 = await request(app)

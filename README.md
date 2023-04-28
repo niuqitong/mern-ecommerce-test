@@ -34,7 +34,7 @@ In the .env change MONGO_URI to
 mongodb+srv://oose2022:oosefall2022@cluster0.mohmp8x.mongodb.net/load_testing?retryWrites=true&w=majority
 ```
 ```bash
-artillery run artillery.json
+./run_artillery.sh
 ```
 
 
@@ -73,7 +73,12 @@ npm test
 
 
 ### Load Testing
-`
+- Tested a representative API that handles a get request
+- Compared the performance of the service with and withoud fetching data from database
+- Focused on the ratio of successful request and 95% response with respect to request per second. 
+- Test results:
+  - ![](./load_testing/success_rate.png)
+  - ![](./load_testing/p95res_time.png)
 
 
 

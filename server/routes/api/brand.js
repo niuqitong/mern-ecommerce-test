@@ -58,16 +58,22 @@ router.get('/list', async (req, res) => {
   }
 });
 
+// dummy api only for the purpose of load testing 
+// compared with fetching data from database
 router.get('/local', async (req, res) => {
   try {
-    const brand = new Brand({
-      name: "adsf",
-      description: "asdf ads fa dfa",
-      slug: "nqt",
-      isActive: true
-    })
+    let brands = []
+    for (let i = 0; i < 100; i++) {
+      const brand = new Brand({
+        name: "adsf",
+        description: "asdf ads fa dfa",
+        slug: "nqt",
+        isActive: true
+      });
+      brands.push(brand)
+    }
     res.status(200).json({
-      brand
+      brands
     });
   } catch (error) {
     res.status(400).json({

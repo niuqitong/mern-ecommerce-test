@@ -1,6 +1,6 @@
 #!/bin/bash
 
-config_files=("artillery_100.json" "artillery_200.json" "artillery_500.json")
+config_files=(./load_testing/*.json)
 
 for config_file in "${config_files[@]}"; do
   echo "Running Artillery with configuration: $config_file"

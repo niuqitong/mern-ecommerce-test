@@ -27,7 +27,6 @@ describe("Orders API", () => {
         role: ROLES.Admin,
       });
       const existingUser = await User.findOne({ email: admin.email });
-      // console.log("existingUser", existingUser);
       if (existingUser) throw new Error("user collection is seeded!");
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(admin.password, salt);
@@ -55,7 +54,6 @@ describe("Orders API", () => {
       const hash2 = await bcrypt.hash(anotherUser.password, salt2);
       anotherUser.password = hash2;
       await anotherUser.save();
-      // const anotherUserToken = anotherUser.generateAuthToken();
     } catch (error) {
       console.log(error);
       return null;
@@ -83,7 +81,6 @@ describe("Orders API", () => {
   afterAll(async () => {
     await User.deleteMany({});
     await Order.deleteMany({});
-    // await mongoose.disconnect();
   });
 
   beforeEach(async () => {
@@ -120,7 +117,7 @@ describe("Orders API", () => {
     await Order.deleteMany({});
   });
 
-  describe("POST /add", () => {
+  describe("test POST on /add", () => {
     it("should create a new order", async () => {
       const res = await request(app)
         .post("/api/order/add")
@@ -150,34 +147,7 @@ describe("Orders API", () => {
       );
     });
 
-    // it("should return an error if total is not provided", async () => {
-    //   const product = new Product({
-    //     name: "Test Product",
-    //     price: 10,
-    //     quantity: 100,
-    //   });
-    //   await product.save();
-
-    //   const cart = new Cart({
-    //     products: [
-    //       {
-    //         product: product._id,
-    //         quantity: 1,
-    //       },
-    //     ],
-    //   });
-    //   await cart.save();
-
-    //   const res = await request(app)
-    //     .post("/api/order/add")
-    //     .set("Authorization", `${userToken}`)
-    //     .send({
-    //       cartId: cart._id,
-    //     });
-
-    //   expect(res.status).toBe(200);
-    //   // expect(res.body.error).toBe('Your request could not be processed. Please try again.');
-    // });
+    
   });
 
 
@@ -266,7 +236,7 @@ describe("Orders API", () => {
     });
   });
 
-  describe("GET /api/order", () => {
+  describe("test GET on /api/order", () => {
     it("should return paginated orders", async () => {
       const order = new Order({
         user: user._id,
@@ -285,11 +255,6 @@ describe("Orders API", () => {
       expect(res.body.currentPage).toBe(1);
       expect(res.body.count).toBe(1);
 
-      // const res1 = await request(app)
-      //   .get("/api/order")
-      //   .set("Authorization", `${userToken}`);
-
-      // expect(res1.status).toBe(200);
     });
     it("should return paginated orders", async () => {
       const order = new Order({
@@ -309,11 +274,6 @@ describe("Orders API", () => {
       expect(res.body.currentPage).toBe(1);
       expect(res.body.count).toBe(1);
 
-      // const res1 = await request(app)
-      //   .get("/api/order")
-      //   .set("Authorization", `${userToken}`);
-
-      // expect(res1.status).toBe(200);
     });
   });
 
