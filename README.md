@@ -1,5 +1,7 @@
 # MERN Ecommerce
 
+## There is a zip file inside just in case everything doesn't upload correctly. Having some issues with grade scope due to the files being too big.
+
 ## Installation
 Remove package-lock.json
 
