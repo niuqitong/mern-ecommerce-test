@@ -59,6 +59,8 @@ npm test
 
 ### API Testing
 - All APIs covered
+- 95% Branch Coverage on APIs (some branches were unreachable due to bugs) on API
+- Some utils functions weren't tested due to us not testing such functions overall, such as S3 and seeding.
 - Main Faults:
   - No Validators in Backend (Almost every api)
     e.g. if login request’s email is an array, it just processes it (find one that match one of the emails).
